@@ -1,0 +1,761 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Material K-Mean Clustering , K-Nearest Neighbor , and Decision Tree Models">
+      
+      
+        <link rel="canonical" href="https://github.com/fararibimaf/index3/">
+      
+      
+        <meta name="author" content="Farari Bima Firmansyah">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Pengertian Dan Implementasi Decision Tree - Data Mining Implementation with Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#implementasi-decision-tree-algorithm-dengan-scikit-learn-python" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://github.com/fararibimaf" title="Data Mining Implementation with Python" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Data Mining Implementation with Python
+            </span>
+            <span class="md-header-nav__topic">
+              Pengertian Dan Implementasi Decision Tree
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/fararibimaf/170441100078-knn-and-k-mean-clustering" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    fararibimaf/170441100078-knn-and-k-mean-clustering
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="Pengertian dan Implementasi K-Mean Clustering" class="md-tabs__link md-tabs__link--active">
+        Pengertian dan Implementasi K-Mean Clustering
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://github.com/fararibimaf" title="Data Mining Implementation with Python" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Data Mining Implementation with Python
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/fararibimaf/170441100078-knn-and-k-mean-clustering" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    fararibimaf/170441100078-knn-and-k-mean-clustering
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Pengertian dan Implementasi K-Mean Clustering" class="md-nav__link">
+      Pengertian dan Implementasi K-Mean Clustering
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index2/" title="Pengertian Dan Implementasi K-Nearest Neighbor" class="md-nav__link">
+      Pengertian Dan Implementasi K-Nearest Neighbor
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Pengertian Dan Implementasi Decision Tree" class="md-nav__link md-nav__link--active">
+      Pengertian Dan Implementasi Decision Tree
+    </a>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="implementasi-decision-tree-algorithm-dengan-scikit-learn-python">Implementasi Decision Tree Algorithm dengan scikit learn - python</h1>
+<p><img alt="" src="../assets/images/dt1.PNG" /></p>
+<p>​           <strong>Konsep dari pohon keputusan adalah mengubah data menjadi <em>decision tree</em>dan aturan-aturan keputusan. Manfaat utama dari penggunaan <em>decision tree</em> adalah kemampuannya untuk mem-<em>break down</em> proses pengambilan keputusan yang kompleks menjadi lebih simple, sehingga pengambil keputusan akan lebih menginterpretasikan solusi dari permasalahan.</strong></p>
+<p>Penggunaan Decision tree ini umunya dalam riset operasi, khususnya dalam analisis keputusan. Tujuan dalam menggunakan Decision tree untuk membantu mengidentifikasi strategi yang paling mungkin untuk mencapai tujuan dan merupakan alat yang populer dalam machine learning.</p>
+<p>Decision tree merupakan struktur seperti bagan alur dimana setiap simpul internal mewakili kemungkinan yang ada pada atribut, setiap cabang mewakili hasil dari kemungkinan tersebut, dan setiap simpul daun mewakili label kelas (keputusan diambil setelah menghitung semua atribut). Jalur dari root ke daun mewakili aturan klasifikasi.</p>
+<p>Dalam analisis keputusan, decision tree dan diagram yang terkait dengan itu digunakan sebagai alat pendukung keputusan visual dan analitis, dimana akan dihitungnya nilai atau utilitas yang diharapkan dari alternatif yang ada.</p>
+<h1 id="pros-and-cons">PROS and CONS</h1>
+<h3 id="pros">PROS</h3>
+<p>Dalam beberapa aplikasi, akurasi dari sebuah klasifikasi atau prediksi adalah satu-satunya hal yang ditonjolkan dalam metode ini, misalnya sebuah perusahaan <em>direct mail</em> membuat sebuah model yang akurat untuk memprediksi anggota mana yang berpotensi untuk merespon permintaan, tanpa memperhatikan bagaimana atau mengapa model tersebut bekerja.</p>
+<p>Kelebihan lain dari metode ini adalah mampu mengeliminasi perhitungan atau data-data yang kiranya tidak diperlukan. Sebab, sampel yang ada biasanya hanya diuji berdasarkan kriteria atau kelas tertentu saja.</p>
+<h3 id="cons">CONS</h3>
+<p><em>Decision tree</em> ini bisa terjadi overlap, terutama ketika kelas dan kriteria yang digunakan sangat banyak tentu saja dapat meningkatkan waktu pengambilan keputusan sesuai dengan jumlah memori yang dibutuhkan.</p>
+<p>Dalam hal akumulasi, <em>decision tree</em> juga seringkali mengalami kendala eror terutama dalam jumlah besar. Selain itu, terdapat pula kesulitan dalam mendesain <em>decision tree</em> yang optimal. Apalagi mengingat kualitas keputusan yang didapatkan dari metode <em>decision tree</em> sangat tergantung pada bagaimana pohon tersebut didesain.</p>
+<h2 id="bagaimana-cara-kerja-algoritma-pohon-keputusan">Bagaimana cara kerja algoritma Pohon Keputusan?</h2>
+<p>Ide dasar di balik algoritma pohon keputusan adalah sebagai berikut:</p>
+<ul>
+<li>Pilih atribut terbaik menggunakan Pengukuran Pemilihan Atribut ( <em>Attribute selection measure</em> )untuk membagi record .</li>
+<li>Jadikan atribut itu sebagai simpul keputusan dan pisahkan dataset menjadi himpunan bagian yang lebih kecil.</li>
+<li>Mulailah membangun pohon dengan mengulangi proses ini secara rekursif untuk setiap anak sampai salah satu dari kondisi tersebut akan cocok:</li>
+<li>Semua tupel memiliki nilai atribut yang sama.</li>
+<li>Tidak ada lagi atribut yang tersisa.</li>
+<li>Tidak ada contoh lagi.</li>
+</ul>
+<p>Saat menerapkan Decision Tree, dengan dua fase berikut:</p>
+<ul>
+<li>
+<p>Fase Bangunan</p>
+</li>
+<li>
+<p>Memproses ulang dataset.</p>
+</li>
+<li>
+<p>Pisahkan dataset dari kereta dan uji menggunakan paket sklearn Python.</p>
+</li>
+<li>
+<p>Latih pengklasifikasi</p>
+</li>
+<li>
+<p>Fase Operasional</p>
+</li>
+<li>
+<p>Membuat prediksi.</p>
+</li>
+<li>
+<p>Hitung keakuratannya.</p>
+</li>
+</ul>
+<p>​    </p>
+<h1 id="implementasi">Implementasi</h1>
+<h4 id="data-slicing">Data slicing :</h4>
+<ul>
+<li>
+<p>Sebelum melatih model, kita harus membagi dataset menjadi dataset pelatihan dan pengujian.</p>
+</li>
+<li>
+<p>Untuk membagi dataset untuk pelatihan dan pengujian, kami menggunakan modul   sklearn train_test_split</p>
+</li>
+<li>
+<p>Pertama-tama kita harus memisahkan variabel target dari atribut dalam dataset.</p>
+</li>
+</ul>
+<p><code>python
+  X = balance_data.values[:, 1:5]
+  Y = balance_data.values[:,0</code></p>
+<ul>
+<li>
+<p>Di atas adalah baris-baris dari kode yang memisahkan set data. Variabel X berisi atribut sedangkan variabel Y berisi variabel target dari dataset.</p>
+</li>
+<li>
+<p>Langkah selanjutnya adalah membagi dataset untuk tujuan pelatihan dan pengujian.</p>
+</li>
+</ul>
+<p><code>python
+  X_train, X_test, y_train, y_test = train_test_split( 
+            X, Y, test_size = 0.3, random_state = 100)</code></p>
+<ul>
+<li>Di atas garis, pisahkan dataset untuk pelatihan dan pengujian. Karena kami membagi dataset dalam rasio 70:30 antara pelatihan dan pengujian, maka kami memberikan nilai parameter test_size menjadi 0,3.</li>
+<li>variabel random_state adalah keadaan generator angka pseudo-acak yang digunakan untuk pengambilan sampel acak.</li>
+</ul>
+<p>​    </p>
+<h4 id="istilah-yang-digunakan-dalam-kode">Istilah yang digunakan dalam kode:</h4>
+<p><strong>GINI INDEX</strong></p>
+<p>Index Gini  dan perolehan informasi kedua metode ini digunakan untuk memilih dari n atribut dataset yang atributnya akan ditempatkan pada simpul akar atau simpul internal.
+Indeks gini   </p>
+<p><img alt="" src="../assets/images/Capture2.PNG" /></p>
+<ul>
+<li>Indeks Gini adalah metrik untuk mengukur seberapa sering elemen yang dipilih secara acak akan diidentifikasi secara salah.</li>
+<li>Ini berarti atribut dengan indeks gini yang lebih rendah harus lebih disukai.</li>
+<li>Sklearn mendukung kriteria "gini" untuk Indeks Gini dan secara default, dibutuhkan nilai "gini" </li>
+</ul>
+<p><strong>ENTROPY</strong></p>
+<p>​                                                   <img alt="" src="../assets/images/DT3.PNG" /></p>
+<ul>
+<li>Entropi biasanya berubah ketika kita menggunakan node dalam pohon keputusan untuk mempartisi instance pelatihan menjadi himpunan bagian yang lebih kecil. Keuntungan informasi adalah ukuran dari perubahan dalam entropi ini.</li>
+<li>Sklearn mendukung kriteria "entropi" untuk Penguatan Informasi dan jika kita ingin menggunakan metode Penguatan Informasi di sklearn maka kita harus menyebutkannya secara eksplisit.</li>
+</ul>
+<p><strong>INFORMATION GAIN</strong>
+                                                            <img alt="img" src="../assets/images/DT4.PNG" /></p>
+<ul>
+<li>The entropy typically changes when we use a node in a decision tree to partition the training instances into smaller subsets. Information gain is a measure of this change in entropy.</li>
+<li>Sklearn supports “entropy” criteria for Information Gain and if we want to use Information Gain method in sklearn then we have to mention it explicitly.</li>
+</ul>
+<p><strong>ACCURACY SCORE</strong></p>
+<p>Accuracy score digunakan untuk menghitung akurasi classifier yang terlatih.</p>
+<p><strong>CONFUSION MATRIX</strong></p>
+<p>digunakan untuk memahami perilaku pengklasifikasi terlatih atas dataset pengujian atau memvalidasi dataset.</p>
+<ul>
+<li>Download data :</li>
+</ul>
+<p><a href="../assets/bill_authentication.csv">bill_authentication.csv</a></p>
+<h4 id="di-bawah-ini-adalah-kode-python-untuk-decion-tree">Di bawah ini adalah kode python untuk Decion Tree.</h4>
+<pre><code class="python"># Run this program on your local python
+# interpreter, provided you have installed
+# the required libraries.
+
+# Importing the required packages
+import numpy as np
+import pandas as pd
+from sklearn.metrics import confusion_matrix
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report
+
+# Function importing Dataset
+def importdata():
+    balance_data = pd.read_csv(&quot;bill_authentication-edit.csv&quot;,sep= ',', header = 1)
+
+    # Printing the dataswet shape
+    print (&quot;Dataset Lenght: &quot;, len(balance_data))
+    print (&quot;Dataset Shape: &quot;, balance_data.shape)
+
+    # Printing the dataset obseravtions
+    print('dataset :')
+    print (balance_data.head())
+    return balance_data
+
+# Function to split the dataset
+def splitdataset(balance_data):
+
+    # Seperating the target variable
+    X = balance_data.values[:, 1:5]
+    Y = balance_data.values[:, 0]
+
+    # Spliting the dataset qinto train and test
+    X_train, X_test, y_train, y_test = train_test_split(
+    X, Y, test_size = 0.3, random_state = 100)
+
+    return X, Y, X_train, X_test, y_train, y_test
+
+# Function to perform training with giniIndex.
+def train_using_gini(X_train, X_test, y_train):
+
+    # Creating the classifier object
+    clf_gini = DecisionTreeClassifier(criterion = &quot;gini&quot;,
+            random_state = 100,max_depth=3, min_samples_leaf=5)
+
+    # Performing training
+    clf_gini.fit(X_train, y_train)
+    return clf_gini
+
+# Function to perform training with entropy.
+def tarin_using_entropy(X_train, X_test, y_train):
+
+    # Decision tree with entropy
+    clf_entropy = DecisionTreeClassifier(
+            criterion = &quot;entropy&quot;, random_state = 100,
+            max_depth = 3, min_samples_leaf = 5)
+
+    # Performing training
+    clf_entropy.fit(X_train, y_train)
+    return clf_entropy
+
+
+# Function to make predictions
+def prediction(X_test, clf_object):
+
+    # Predicton on test with giniIndex
+    y_pred = clf_object.predict(X_test)
+    print(&quot;Predicted values:&quot;)
+    print(y_pred)
+    return y_pred
+
+# Function to calculate accuracy
+def cal_accuracy(y_test, y_pred):
+
+    print(&quot;Confusion Matrix: &quot;,
+        confusion_matrix(y_test, y_pred))
+
+    print (&quot;Accuracy : &quot;,
+    accuracy_score(y_test,y_pred)*100)
+
+    print(&quot;Report : &quot;,
+    classification_report(y_test, y_pred))
+
+# Driver code
+def main():
+
+    # Building Phase
+    data = importdata()
+    X, Y, X_train, X_test, y_train, y_test = splitdataset(data)
+    clf_gini = train_using_gini(X_train, X_test, y_train)
+    clf_entropy = tarin_using_entropy(X_train, X_test, y_train)
+
+    # Operational Phase
+    print(&quot;Results Using Gini Index:&quot;)
+
+    # Prediction using gini
+    y_pred_gini = prediction(X_test, clf_gini)
+    cal_accuracy(y_test, y_pred_gini)
+
+    print(&quot;Results Using Entropy:&quot;)
+    # Prediction using entropy
+    y_pred_entropy = prediction(X_test, clf_entropy)
+    cal_accuracy(y_test, y_pred_entropy)
+
+
+# Calling main function
+if __name__==&quot;__main__&quot;:
+    main()
+</code></pre>
+
+<p><strong>HASIL :</strong></p>
+<pre><code class="python">                                **Data Infomation:**
+
+Dataset Lenght:  1371
+Dataset Shape:  (1371, 5)
+
+dataset :
+0  8.6661  -2.8073  -0.44699   3.6216
+0  0  8.1674  -2.4586  -1.46210  4.54590
+1  0 -2.6383   1.9242   0.10645  3.86600
+2  0  9.5228  -4.0112  -3.59440  3.45660
+3  0 -4.4552   4.5718  -0.98880  0.32924
+4  0  9.6718  -3.9606  -3.16250  4.36840
+
+
+
+###########################**Results Using Gini Index:**#######################
+
+Predicted values:
+[1. 0. 1. 0. 0. 0. 1. 0. 1. 0. 0. 1. 1. 0. 0. 0. 0. 0. 0. 0. 1. 1. 0. 1.
+
+1. 1. 0. 1. 1. 0. 1. 0. 1. 0. 0. 1. 0. 1. 1. 1. 0. 0. 0. 0. 0. 1. 1. 0.
+2. 1. 0. 1. 0. 1. 1. 1. 0. 0. 0. 0. 1. 0. 0. 1. 1. 1. 0. 1. 1. 0. 0. 0.
+3. 0. 0. 0. 1. 1. 0. 0. 0. 1. 1. 1. 0. 0. 0. 0. 0. 0. 1. 0. 0. 1. 0. 0.
+4. 0. 0. 0. 0. 1. 0. 0. 0. 1. 0. 0. 0. 1. 1. 1. 1. 0. 0. 0. 0. 1. 0. 0.
+5. 0. 1. 1. 0. 0. 1. 1. 0. 0. 0. 1. 0. 0. 1. 0. 0. 0. 1. 1. 0. 0. 0. 0.
+6. 0. 1. 0. 0. 1. 1. 0. 1. 0. 1. 1. 0. 0. 0. 0. 1. 1. 0. 1. 1. 1. 0. 0.
+7. 1. 0. 0. 1. 0. 1. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 1. 0. 0. 1. 1. 0. 0.
+8. 1. 1. 1. 1. 0. 0. 0. 1. 1. 0. 1. 0. 1. 1. 0. 0. 0. 1. 0. 0. 0. 1. 0.
+9. 1. 1. 1. 1. 0. 0. 1. 0. 1. 0. 1. 1. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.
+10. 0. 1. 1. 0. 1. 1. 1. 1. 1. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 0.
+11. 1. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 1. 1. 0. 1. 1. 0. 0. 1. 1. 0. 1. 0.
+12. 0. 1. 1. 1. 0. 0. 1. 0. 1. 0. 1. 1. 0. 1. 1. 0. 1. 0. 0. 0. 1. 1. 1.
+13. 1. 1. 1. 1. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 1. 0. 0. 1. 1. 0.
+14. 0. 1. 1. 1. 0. 1. 0. 1. 0. 0. 0. 0. 0. 1. 0. 1. 0. 1. 0. 0. 0. 0. 0.
+15. 0. 1. 1. 0. 1. 1. 1. 0. 1. 0. 0. 1. 1. 0. 0. 1. 1. 1. 0. 0. 0. 0. 0.
+16. 1. 0. 0. 1. 0. 0. 1. 1. 1. 0. 1. 0. 1. 1. 0. 1. 0. 0. 1. 0. 0. 0. 1.
+17. 1. 0. 0.]
+
+Confusion Matrix:  
+[[227  11]
+[ 14 160]]
+
+Accuracy :  93.93203883495146
+
+​```python
+Report :         precision    recall  f1-score   support
+
+      0.0       0.94      0.95      0.95       238
+      1.0       0.94      0.92      0.93       174
+​```
+
+
+
+micro avg          0.94      0.94      0.94       412
+macro avg          0.94      0.94      0.94       412
+weighted avg       0.94      0.94      0.94       412
+
+​                               
+
+
+
+############################# **Results Using Entropy:**#############################
+Predicted values:
+[1. 0. 1. 1. 0. 0. 1. 1. 1. 1. 0. 1. 1. 0. 0. 0. 0. 0. 0. 0. 1. 1. 0. 1.
+
+1. 1. 1. 1. 1. 0. 1. 0. 1. 0. 1. 1. 0. 1. 1. 1. 0. 1. 0. 0. 0. 0. 1. 0.
+2. 1. 0. 1. 0. 1. 1. 1. 0. 1. 0. 0. 1. 0. 0. 1. 1. 1. 0. 1. 1. 0. 0. 0.
+3. 0. 0. 0. 1. 1. 0. 0. 1. 1. 1. 1. 0. 0. 0. 1. 0. 0. 1. 0. 0. 1. 0. 0.
+4. 0. 0. 0. 0. 1. 0. 1. 0. 1. 0. 0. 0. 1. 1. 1. 1. 0. 0. 0. 0. 1. 0. 0.
+5. 0. 1. 0. 0. 0. 1. 1. 1. 0. 0. 1. 0. 0. 1. 0. 1. 0. 1. 1. 0. 0. 0. 0.
+6. 0. 1. 0. 1. 1. 1. 0. 1. 0. 1. 1. 0. 1. 0. 0. 1. 1. 1. 1. 1. 1. 0. 1.
+7. 1. 0. 0. 1. 0. 1. 0. 0. 0. 1. 0. 0. 0. 1. 1. 1. 1. 0. 0. 1. 1. 1. 0.
+8. 1. 1. 1. 1. 0. 0. 1. 1. 1. 0. 1. 0. 1. 1. 0. 1. 0. 1. 0. 0. 0. 1. 0.
+9. 1. 1. 1. 1. 0. 1. 1. 1. 1. 0. 1. 1. 1. 0. 1. 0. 1. 0. 1. 0. 1. 0. 1.
+10. 0. 1. 1. 0. 1. 1. 1. 1. 1. 1. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 1. 1. 0.
+11. 1. 0. 0. 0. 0. 0. 1. 0. 0. 1. 1. 1. 1. 0. 1. 1. 0. 0. 1. 1. 0. 1. 1.
+12. 1. 1. 1. 1. 1. 0. 1. 0. 1. 0. 1. 1. 0. 1. 1. 0. 1. 0. 0. 0. 1. 1. 1.
+13. 1. 1. 1. 1. 0. 0. 1. 1. 1. 0. 0. 0. 0. 1. 0. 1. 0. 1. 0. 0. 1. 1. 0.
+14. 0. 1. 1. 1. 0. 0. 0. 1. 0. 1. 1. 0. 0. 1. 0. 1. 0. 1. 0. 0. 1. 0. 0.
+15. 0. 1. 1. 0. 1. 0. 1. 0. 1. 0. 0. 1. 1. 0. 0. 1. 1. 1. 0. 0. 0. 0. 0.
+16. 1. 0. 0. 1. 1. 0. 1. 1. 1. 0. 1. 0. 1. 1. 0. 1. 0. 0. 1. 0. 0. 0. 1.
+17. 1. 0. 0.]
+
+Confusion Matrix:
+[[200  38]
+[  4 170]]
+
+Accuracy :  89.80582524271846
+
+  Report :                precision    recall  f1-score   support
+                  0.0       0.98      0.84      0.90       238
+                  1.0       0.82      0.98      0.89       174
+
+micro avg          0.90      0.90      0.90       412
+macro avg          0.90      0.91      0.90       412
+weighted avg       0.91      0.90      0.90       412
+
+Process finished with exit code 0
+
+</code></pre>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../index2/" title="Pengertian Dan Implementasi K-Nearest Neighbor" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Pengertian Dan Implementasi K-Nearest Neighbor
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019 fararibimaf
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://webfarari.000webhostapp.com/" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/fararibimaf" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://instagram.com/faarari" class="md-footer-social__link fa fa-instagram"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8c0d971c.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
